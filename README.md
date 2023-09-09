@@ -16,4 +16,5 @@ Manual down move: 1 point
 - Sometimes a rotated block would collide with another but still set into place incorrectly!
 
 **GAME UI**
+
 ![image](https://github.com/xFooFoo/Tetris/assets/73238233/20484847-86f9-4c1c-87ed-6d867eabd40b)
