@@ -6,8 +6,11 @@ Game::Game() {
 	blocks = GetAllBlocks();
 	currentBlock = GetRandomBlock();
 	nextBlock = GetRandomBlock();
+	heldBlock;
 	score = 0;
 	gameOver = false;
+	held = false;
+	canUseHold = true;
 }
 
 Block Game::GetRandomBlock() {
@@ -26,7 +29,36 @@ std::vector<Block> Game::GetAllBlocks() {
 
 void Game::Draw() {
 	grid.Draw();
-	currentBlock.Draw();
+	currentBlock.Draw(10, 10);
+
+	// To account for the move shift when block is first spawned
+	switch (nextBlock.id) {
+	case 3: //IBLOCK
+		nextBlock.Draw(255, 220);
+		break;
+	case 4://OBLOCK
+		nextBlock.Draw(255, 205);
+		break;
+	default:
+		nextBlock.Draw(270, 205);
+		//nextBlock.Draw(320 - 90 + 170 / 2 - 90 / 2, 185 + 100 / 2 - 60 / 2); CALCULATION
+		break;
+	}
+
+	if (held) {
+		// These blocks have been reset to 0,0 to reset all player movements & initial spawn move. We will undo-spawn move here.
+		switch (heldBlock.id) {
+		case 3: //IBLOCK
+			heldBlock.Draw(315, 390);
+			break;
+		case 4://OBLOCK
+			heldBlock.Draw(375, 375);
+			break;
+		default: // ALL OTHER BLOCKS
+			heldBlock.Draw(360, 375); //nextBlock.Draw(320 + 170 / 2 - 90 / 2 - 90, 205 + 170); CALCULATION
+			break;
+		}
+	}
 }
 
 // Create hard drop and hold mechanics
@@ -45,6 +77,7 @@ void Game::HandleInput() {
 		break;
 	case KEY_DOWN:
 		MoveBlockDown();
+		UpdateScore(0, 1);
 		break;
 	case KEY_UP:
 	case KEY_X:
@@ -52,6 +85,9 @@ void Game::HandleInput() {
 		break;
 	case KEY_Z:
 		RotateBlockLeft();
+		break;
+	case KEY_C:
+		HoldBlock();
 		break;
 	}
 }
@@ -80,13 +116,15 @@ bool Game::BlockFits()
 
 void Game::LockBlock()
 {
+	canUseHold = true; //Replenish one use of the hold swap
 	//set the block on the grid for drawing
 	std::vector<Position> tiles = currentBlock.GetCellPositions();
 	for (Position item : tiles) {
 		grid.grid[item.row][item.col] = currentBlock.id;
 	}
 	//Whenever something new locks, we have to check if a full row is cleared!
-	score = grid.ClearFullRows();
+	int rowsCleared = grid.ClearFullRows();
+	UpdateScore(rowsCleared, 0);
 	//update the currentBlock to the new block as we no longer need the old one!
 	currentBlock = nextBlock;
 	nextBlock = GetRandomBlock();
@@ -139,6 +177,41 @@ void Game::RotateBlockRight()
 	}
 }
 
+void Game::HoldBlock() {
+	//We can only perform holds once before the player has to place the tile
+	if (canUseHold) {
+		//------------RESET ALL OFFSETS ON CURRENTBLOCK TO BE HELD-------------------------------//
+		currentBlock.Reset();
+		//Re-do the initial spawn move
+		switch (currentBlock.id) {
+		case 3: // IBLOCK
+			heldBlock.Move(-1, 3);
+			break;
+		case 4: //OBLOCK
+			heldBlock.Move(0, 4);
+			break;
+		default: // ALL OTHER BLOCKS
+			heldBlock.Move(0, 3);
+			break;
+		}
+		//-------------------------------SWAP LOGIC-------------------------------------------//
+		Block tempBlock = currentBlock;
+		// When no blocks are held we can just make nextBlock as current
+		if (!held) {
+			currentBlock = nextBlock;
+		}
+		//if a block is already held, swap current and held block
+		else { 
+			currentBlock = heldBlock;
+		}
+		//Must update the following blocks after the current block
+		nextBlock = GetRandomBlock(); 
+		heldBlock = tempBlock; 
+		held = true;
+		canUseHold = false;
+	}
+}
+
 void Game::RotateBlockLeft()
 {
 	if (!gameOver) {
@@ -150,13 +223,34 @@ void Game::RotateBlockLeft()
 	}
 }
 
+void Game::UpdateScore(int rowsCleared, int moveDownPoints)
+{
+	switch (rowsCleared) {
+	case 1:
+		score += 100;
+		break;
+	case 2:
+		score += 300;
+		break;
+	case 3:
+		score += 500;
+		break;
+	default:
+		score += rowsCleared * 200;
+	}
+	score += moveDownPoints;
+}
+
 void Game::Reset() {
 	gameOver = false;
+	held = false;
+	canUseHold = true;
 	//Reset to starting values
 	grid.Initialize();
 	blocks = GetAllBlocks();
 	currentBlock = GetRandomBlock();
 	nextBlock = GetRandomBlock();
+	heldBlock;
 	score = 0;
 }
 

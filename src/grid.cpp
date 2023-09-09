@@ -34,7 +34,8 @@ void Grid::Draw() {
         for (int col = 0; col < cellWidth; col++) {
             int cellValue = grid[row][col];
             // borderSize adjustments such that the background drawn will appear as the grids!
-            DrawRectangle(col * cellSize + borderSize, row * cellSize + borderSize, cellSize - borderSize, cellSize - borderSize, colours[cellValue]);
+            // +10 is to show the frame on the top & left
+            DrawRectangle(col * cellSize + borderSize + 10, row * cellSize + borderSize + 10, cellSize - borderSize, cellSize - borderSize, colours[cellValue]);
             //The background can be the grid...
             //DrawRectangleLinesEx(Rectangle{ (float)col * cellSize + 1, (float)row * cellSize + 1, (float)cellSize , (float)cellSize }, (float)1, DARKGRAY);
         }

@@ -1,6 +1,8 @@
 #include "..\include\block.h"
 #include "..\include\position.h"
-
+// Positions are based on the top-left corner of the tetronimo's rotational box area
+// Rotation is based on the bottom centre of the tetronimo when lying flat 
+// Move is then called to offset the tetronimo such that it spawns at the top centre of the grid
 class LBlock : public Block {
 public:
 	LBlock(){

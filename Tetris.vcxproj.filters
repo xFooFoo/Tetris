@@ -54,4 +54,10 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Font Include="Font\monogram.ttf">
+      <Filter>Resource Files</Filter>
+    </Font>
+    <Font Include="Font\ARCADECLASSIC.TTF" />
+  </ItemGroup>
 </Project>

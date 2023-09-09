@@ -1,6 +1,7 @@
 // Tetris.cpp : This file contains the 'main' function. Program execution begins and ends there
 #include <raylib.h>
 #include "..\include\game.h"
+#include <iostream>
 
 double lastUpdateTime = 0;
 
@@ -15,36 +16,44 @@ bool EventTriggered(double interval) {
 
 int main()
 {
-    Color darkGrayGrid = { 86, 86, 96, 255 };
-
-    InitWindow(300, 600, "Christine");
+    InitWindow(500, 620, "Tetris");
     SetTargetFPS(60);
     
     Game game = Game();
-
+    Font font = LoadFontEx("Font/BarcadeNoBar.otf", 64, 0, 0);
+    std::cout << GetWorkingDirectory();
     while (!WindowShouldClose()) {
         BeginDrawing();
-        //Interval period in seconds is passed to EventTriggered
-        if (EventTriggered(0.5)) {
+        //--------------Interval period in seconds is passed to EventTriggered-----------//
+        if (EventTriggered(0.2)) {
             game.MoveBlockDown();
         }
+        //-------------------KEY PRESS PROCESSES HERE-------------------------------//
         game.HandleInput();
-        //game.Update();
-        ClearBackground(darkGrayGrid);
+        //-------------------------------------------------------------------------//
+        ClearBackground(purpleBackground);
+        //------------------------UI STARTS---------------------------------------//
+        DrawTextEx(font, "Score", { 320 + 20, 15 }, 38, 2, RAYWHITE);
+        DrawRectangleRounded({320, 55, 170, 60}, (float)0.3, 6, lightPurpleBackground);
+        //-------------- Score text generation ----------------------//
+        char scoreText[10];
+        sprintf_s(scoreText, sizeof(scoreText), "%d", game.score);
+        Vector2 textSize = MeasureTextEx(font, scoreText, 38, 2);
+        DrawTextEx(font, scoreText, { 320 + (170 - textSize.x) / 2, 66.5}, 38, 2, RAYWHITE);
+        //---------------------------------------------------------------//
+        DrawTextEx(font, "Next", { 320 + 32.5, 145 }, 38, 2, RAYWHITE);
+        DrawRectangleRounded({ 310 + 10, 185, 170, 100 }, (float)0.3, 6, lightPurpleBackground);
+        //---------------------------------------------------------------//
+        DrawTextEx(font, "Hold", { 320 + 32.5, 315 }, 38, 2, RAYWHITE);
+        DrawRectangleRounded({ 310 + 10, 355, 170, 100 }, (float)0.3, 6, lightPurpleBackground);
+        if (game.gameOver) {
+            DrawTextEx(font, "GAME", { 320 + 25, 500 }, 38, 2, RED);
+            DrawTextEx(font, "OVER", { 320 + 30, 540 }, 38, 2, RED);
+        }
+        //----------------------------UI END------------------------------------//
         game.Draw();
         EndDrawing();
 
     }
     CloseWindow();
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file

@@ -145,6 +145,10 @@
     <ClInclude Include="include\grid.h" />
     <ClInclude Include="include\position.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Font Include="Font\ARCADECLASSIC.TTF" />
+    <Font Include="Font\monogram.ttf" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

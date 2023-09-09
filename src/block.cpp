@@ -9,10 +9,12 @@ Block::Block() {
 	gridOffset = 1;
 }
 
-void Block::Draw() {
+void Block::Draw(int offsetX, int offsetY) {
+	//Original State
 	std::vector<Position> tiles = GetCellPositions();
 	for (Position item : tiles) {
-		DrawRectangle(item.col * cellSize + gridOffset, item.row * cellSize + gridOffset, cellSize - gridOffset, cellSize - gridOffset, colours[id]);
+		//When blocks are initialized, they call Move to the centre of the grid so it has an offset in the X direction!
+		DrawRectangle(item.col * cellSize + gridOffset + offsetX, item.row * cellSize + gridOffset + offsetY, cellSize - gridOffset, cellSize - gridOffset, colours[id]);
 	}
 }
 
@@ -35,6 +37,12 @@ void Block::RotateLeft()
 	if (rotationState < 0) {
 		rotationState = cells.size() - 1;
 	}
+}
+
+void Block::Reset() {
+	rotationState = 0;
+	rowOffset = 0;
+	colOffset = 0;
 }
 
 std::vector<Position> Block::GetCellPositions(){
