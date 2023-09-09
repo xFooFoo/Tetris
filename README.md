@@ -7,6 +7,12 @@ Tetris game made with Raylib on C++
 4 or more Lines: 200 points/line
 Manual down move: 1 point
 
+**Controls:**
+Left/Right/Down Arrow - moves left/right/down
+Z - left rotation
+X/Up Arrow - right rotation
+C - hold 
+
 **Features to add:**
 - Music
 - Hard Drop
