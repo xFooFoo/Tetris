@@ -8,3 +8,4 @@ Features to add:
 
 Bugs to fix:
 - Sometimes a rotated block would collide with another but still set into place incorrectly
+- Hold block feature not functional
