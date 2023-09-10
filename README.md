@@ -17,6 +17,7 @@ C - hold
 - Music
 - Hard Drop
 - T-spin (don't really know how to do a T-spin myself in the game)
+- Level & speed-up System 
 
 **Bugs to fix:**
 - Sometimes a rotated block would collide with another but still set into place incorrectly!
