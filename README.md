@@ -7,7 +7,7 @@ Drag the "Sounds" and "Fonts" folder into the Object files folder (Tetris\x64\De
 2 Lines: 300 points
 3 Lines: 500 points
 4 or more Lines: 200 points/line
-Manual down move: 1 point
+Manual down-move: 1 point
 
 **Controls:**
 Left/Right/Down Arrow - moves left/right/down
@@ -16,13 +16,12 @@ X/Up Arrow - right rotation
 C - hold 
 
 **Features to add:**
-- Music
 - Hard Drop
 - T-spin (don't really know how to do a T-spin myself in the game)
 - Level & speed-up System 
 
 **Bugs to fix:**
-- Sometimes a rotated block would collide with another but still set into place incorrectly!
+- Finding bugs...
 
 **GAME UI**
 
