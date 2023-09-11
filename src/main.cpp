@@ -21,8 +21,11 @@ int main()
     
     Game game = Game();
     Font font = LoadFontEx("Font/BarcadeNoBar.otf", 64, 0, 0);
-    std::cout << GetWorkingDirectory();
+
+    //std::cout << GetWorkingDirectory();
+
     while (!WindowShouldClose()) {
+        UpdateMusicStream(game.music);
         BeginDrawing();
         //--------------Interval period in seconds is passed to EventTriggered-----------//
         if (EventTriggered(0.2)) {

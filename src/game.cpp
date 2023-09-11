@@ -11,6 +11,18 @@ Game::Game() {
 	gameOver = false;
 	held = false;
 	canUseHold = true;
+	InitAudioDevice();
+	music = LoadMusicStream("Sounds/music.mp3");
+	PlayMusicStream(music);
+	rotateSound = LoadSound("Sounds/rotate.mp3");
+	clearSound = LoadSound("Sounds/clear.mp3");
+}
+
+Game::~Game() {
+	UnloadMusicStream(music);
+	UnloadSound(rotateSound);
+	UnloadSound(clearSound);
+	CloseAudioDevice();
 }
 
 Block Game::GetRandomBlock() {
@@ -49,7 +61,7 @@ void Game::Draw() {
 		// These blocks have been reset to 0,0 to reset all player movements & initial spawn move. We will undo-spawn move here.
 		switch (heldBlock.id) {
 		case 3: //IBLOCK
-			heldBlock.Draw(315, 390);
+			heldBlock.Draw(345, 360);
 			break;
 		case 4://OBLOCK
 			heldBlock.Draw(375, 375);
@@ -124,7 +136,10 @@ void Game::LockBlock()
 	}
 	//Whenever something new locks, we have to check if a full row is cleared!
 	int rowsCleared = grid.ClearFullRows();
-	UpdateScore(rowsCleared, 0);
+	if (rowsCleared > 0) {
+		PlaySound(clearSound);
+		UpdateScore(rowsCleared, 0);
+	}
 	//update the currentBlock to the new block as we no longer need the old one!
 	currentBlock = nextBlock;
 	nextBlock = GetRandomBlock();
@@ -166,13 +181,33 @@ void Game::MoveBlockDown() {
 	}
 }
 
+void Game::RotateBlockLeft()
+{
+	if (!gameOver) {
+		currentBlock.RotateLeft();
+		if (IsBlockOutside() || !BlockFits()) {
+			//Only undo movement, we don't lock the block in place here
+			currentBlock.RotateRight();
+		}
+		else {
+			//maybe have another sound when you cannot rotate
+			PlaySound(rotateSound);
+		}
+	}
+}
+
 void Game::RotateBlockRight()
 {
 	if (!gameOver) {
 		currentBlock.RotateRight();
-		if (IsBlockOutside()) {
+		PlaySound(rotateSound);
+		if (IsBlockOutside() || !BlockFits()) {
 			//Only undo movement, we don't lock the block in place here
 			currentBlock.RotateLeft();
+		}
+		else {
+			//maybe have another sound when you cannot rotate
+			PlaySound(rotateSound);
 		}
 	}
 }
@@ -196,30 +231,19 @@ void Game::HoldBlock() {
 		}
 		//-------------------------------SWAP LOGIC-------------------------------------------//
 		Block tempBlock = currentBlock;
-		// When no blocks are held we can just make nextBlock as current
+		// When no blocks are held we can just make nextBlock as current, and generate a new nextBlock
 		if (!held) {
 			currentBlock = nextBlock;
+			nextBlock = GetRandomBlock();
 		}
 		//if a block is already held, swap current and held block
-		else { 
+		else {
 			currentBlock = heldBlock;
 		}
-		//Must update the following blocks after the current block
-		nextBlock = GetRandomBlock(); 
-		heldBlock = tempBlock; 
+		//Must update the heldblock after the current block
+		heldBlock = tempBlock;
 		held = true;
 		canUseHold = false;
-	}
-}
-
-void Game::RotateBlockLeft()
-{
-	if (!gameOver) {
-		currentBlock.RotateLeft();
-		if (IsBlockOutside()) {
-			//Only undo movement, we don't lock the block in place here
-			currentBlock.RotateRight();
-		}
 	}
 }
 

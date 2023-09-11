@@ -6,30 +6,34 @@
 class Game {
 public:
 	Game();
-	Block GetRandomBlock();
-	std::vector<Block> GetAllBlocks();
+	~Game();
 	void Draw();
 	void HandleInput();
-	void MoveBlockLeft();
-	void MoveBlockRight();
 	void MoveBlockDown();
-	void HoldBlock();
-	Grid grid;
 	int score;
 	bool gameOver;
 	bool held; //true if a player has held a new piece without placing down one
 	bool canUseHold; //true is a player has placed a piece while holding another, replenishes their hold use;
 	void Reset();
+	Music music;
 private:
+	Grid grid;
+	std::vector<Block> blocks; //7 Tetrominos stored here
+	std::vector<Block> GetAllBlocks(); //Returns all 7 Tetrominos
+	Block currentBlock;
+	Block nextBlock;
+	Block heldBlock;
+	Block GetRandomBlock();
+	void MoveBlockLeft();
+	void MoveBlockRight();
+	void HoldBlock();
 	bool IsBlockOutside();
 	void RotateBlockRight();
 	void RotateBlockLeft();
 	void LockBlock();
 	void UpdateScore(int rowsCleared, int moveDownPoints);
 	bool BlockFits();
-	std::vector<Block> blocks;
-	Block currentBlock;
-	Block nextBlock;
-	Block heldBlock;
+	Sound rotateSound;
+	Sound clearSound;
 };
 
