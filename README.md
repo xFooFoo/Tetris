@@ -1,5 +1,7 @@
 Tetris game made with Raylib on C++
 
+Drag the "Sounds" and "Fonts" folder into the Object files folder (Tetris\x64\Debug) generated.
+
 **Scoring system:**
 1 Line: 100 points
 2 Lines: 300 points
