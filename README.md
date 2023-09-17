@@ -10,15 +10,15 @@ Drag the "Sounds" and "Fonts" folder into the Object files folder (Tetris\x64\De
 Manual down-move: 1 point
 
 **Controls:**
-Left/Right/Down Arrow - moves left/right/down
-Z - left rotation
-X/Up Arrow - right rotation
-C - hold 
+- Left/Right/Down Arrow - moves left/right/down
+- Z - left rotation
+- X/Up Arrow - right rotation
+- C - hold 
+- Space - hard drop
 
 **Features to add:**
-- Hard Drop
 - T-spin (don't really know how to do a T-spin myself in the game)
-- Level & speed-up System 
+- Level System 
 
 **Bugs to fix:**
 - Finding bugs...
