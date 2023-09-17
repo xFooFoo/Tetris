@@ -9,7 +9,7 @@ public:
 	~Game();
 	void Draw();
 	void HandleInput();
-	void MoveBlockDown();
+	bool MoveBlockDown(); //Returns true or false on whether the block has been locked in place
 	int score;
 	bool gameOver;
 	bool held; //true if a player has held a new piece without placing down one
@@ -27,6 +27,7 @@ private:
 	void MoveBlockLeft();
 	void MoveBlockRight();
 	void HoldBlock();
+	void HardDrop();
 	bool IsBlockOutside();
 	void RotateBlockRight();
 	void RotateBlockLeft();
@@ -35,5 +36,7 @@ private:
 	bool BlockFits();
 	Sound rotateSound;
 	Sound clearSound;
+	Sound holdSound;
+	Sound hardDropSound;
 };
 

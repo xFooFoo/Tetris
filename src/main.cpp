@@ -2,6 +2,7 @@
 #include <raylib.h>
 #include "..\include\game.h"
 #include <iostream>
+#include <cmath>
 
 double lastUpdateTime = 0;
 
@@ -28,7 +29,7 @@ int main()
         UpdateMusicStream(game.music);
         BeginDrawing();
         //--------------Interval period in seconds is passed to EventTriggered-----------//
-        if (EventTriggered(0.2)) {
+        if (EventTriggered(0.5 - std::min( std::floor( (double) game.score / 10000 ), 0.45))) {
             game.MoveBlockDown();
         }
         //-------------------KEY PRESS PROCESSES HERE-------------------------------//

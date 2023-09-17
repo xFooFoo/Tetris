@@ -12,16 +12,20 @@ Game::Game() {
 	held = false;
 	canUseHold = true;
 	InitAudioDevice();
-	music = LoadMusicStream("Sounds/music.mp3");
+	music = LoadMusicStream("Sounds/korobeiniki.mp3");
 	PlayMusicStream(music);
 	rotateSound = LoadSound("Sounds/rotate.mp3");
 	clearSound = LoadSound("Sounds/clear.mp3");
+	holdSound = LoadSound("Sounds/hold.mp3");
+	hardDropSound = LoadSound("Sounds/hardDrop.mp3");
 }
 
 Game::~Game() {
 	UnloadMusicStream(music);
 	UnloadSound(rotateSound);
 	UnloadSound(clearSound);
+	UnloadSound(holdSound);
+	UnloadSound(hardDropSound);
 	CloseAudioDevice();
 }
 
@@ -101,6 +105,9 @@ void Game::HandleInput() {
 	case KEY_C:
 		HoldBlock();
 		break;
+	case KEY_SPACE:
+		HardDrop();
+		break;
 	}
 }
 
@@ -169,7 +176,8 @@ void Game::MoveBlockRight() {
 }
 //Only place where we should be locking the block! Otherwise Blocks would lock on 
 //hitting the frame edges when there are space below!
-void Game::MoveBlockDown() {
+//Returns True for when it locks a block in place
+bool Game::MoveBlockDown() {
 	if (!gameOver) {
 		currentBlock.Move(1, 0);
 		if (IsBlockOutside() || !BlockFits()) {
@@ -177,8 +185,10 @@ void Game::MoveBlockDown() {
 			currentBlock.Move(-1, 0);
 			//Lock block in place and generates a new block!
 			LockBlock();
+			return true;  
 		}
 	}
+	return false;
 }
 
 void Game::RotateBlockLeft()
@@ -215,6 +225,7 @@ void Game::RotateBlockRight()
 void Game::HoldBlock() {
 	//We can only perform holds once before the player has to place the tile
 	if (canUseHold) {
+		PlaySound(holdSound);
 		//------------RESET ALL OFFSETS ON CURRENTBLOCK TO BE HELD-------------------------------//
 		currentBlock.Reset();
 		//Re-do the initial spawn move
@@ -244,6 +255,13 @@ void Game::HoldBlock() {
 		heldBlock = tempBlock;
 		held = true;
 		canUseHold = false;
+	}
+}
+
+void Game::HardDrop() {
+	//Keeps moving block down until it locks it in place and returns true
+	PlaySound(hardDropSound);
+	while (!MoveBlockDown()) {
 	}
 }
 
