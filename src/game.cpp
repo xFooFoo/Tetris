@@ -84,30 +84,32 @@ void Game::HandleInput() {
 	if (gameOver && keyPressed) {
 		Reset();
 	}
-	switch (keyPressed) {
-	case KEY_LEFT:
-		MoveBlockLeft();
-		break;
-	case KEY_RIGHT:
-		MoveBlockRight();
-		break;
-	case KEY_DOWN:
-		MoveBlockDown();
-		UpdateScore(0, 1);
-		break;
-	case KEY_UP:
-	case KEY_X:
-		RotateBlockRight();
-		break;
-	case KEY_Z:
-		RotateBlockLeft();
-		break;
-	case KEY_C:
-		HoldBlock();
-		break;
-	case KEY_SPACE:
-		HardDrop();
-		break;
+	else {
+		switch (keyPressed) {
+		case KEY_LEFT:
+			MoveBlockLeft();
+			break;
+		case KEY_RIGHT:
+			MoveBlockRight();
+			break;
+		case KEY_DOWN:
+			MoveBlockDown();
+			UpdateScore(0, 1);
+			break;
+		case KEY_UP:
+		case KEY_X:
+			RotateBlockRight();
+			break;
+		case KEY_Z:
+			RotateBlockLeft();
+			break;
+		case KEY_C:
+			HoldBlock();
+			break;
+		case KEY_SPACE:
+			HardDrop();
+			break;
+		}
 	}
 }
 
@@ -260,8 +262,10 @@ void Game::HoldBlock() {
 
 void Game::HardDrop() {
 	//Keeps moving block down until it locks it in place and returns true
-	PlaySound(hardDropSound);
-	while (!MoveBlockDown()) {
+	if (!gameOver) {
+		PlaySound(hardDropSound);
+		while (!MoveBlockDown()) {
+		}
 	}
 }
 
