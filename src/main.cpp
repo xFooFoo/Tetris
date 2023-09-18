@@ -29,7 +29,7 @@ int main()
         UpdateMusicStream(game.music);
         BeginDrawing();
         //--------------Interval period in seconds is passed to EventTriggered-----------//
-        if (EventTriggered(0.7 - std::min(((double) game.score / 100000.0), 0.25))) {
+        if (EventTriggered(0.3 - std::min(((double) game.score / 100000.0), 0.25))) {
             game.MoveBlockDown();
             //std::cout << 0.3 - std::min(((double) game.score / 100000.0), 0.25) << std::endl;
         }
