@@ -25,4 +25,5 @@ Manual down-move: 1 point
 
 **GAME UI**
 
-![image](https://github.com/xFooFoo/Tetris/assets/73238233/20484847-86f9-4c1c-87ed-6d867eabd40b)
+![image](https://github.com/xFooFoo/Tetris/assets/73238233/8c9ca15a-511a-4aa8-94d6-27f22cbac53c)
+
