@@ -1,6 +1,7 @@
 Tetris game made with Raylib on C++
 
-Raylib installation and building instruction: https://github.com/raysan5/raylib
+Raylib installation and building instructions: https://github.com/raysan5/raylib
+I recommend using the package manager 'vcpkg' to install Raylib: https://github.com/Microsoft/vcpkg
 
 Drag the "Sounds" and "Fonts" folder into the Object files folder (Tetris\x64\Debug) generated.
 
