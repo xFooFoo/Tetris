@@ -1,5 +1,7 @@
 Tetris game made with Raylib on C++
 
+Raylib installation and building instruction: https://github.com/raysan5/raylib
+
 Drag the "Sounds" and "Fonts" folder into the Object files folder (Tetris\x64\Debug) generated.
 
 **Scoring system:**
