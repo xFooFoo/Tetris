@@ -6,7 +6,7 @@ I recommend using the package manager 'vcpkg' to install Raylib: https://github.
   
   
   
-  
+    
 Drag the "Sounds" and "Fonts" folder into the Object files folder (Tetris\x64\Debug) generated.
 
 **Scoring system:**
