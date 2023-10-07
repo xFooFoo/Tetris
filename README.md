@@ -6,8 +6,8 @@ https://github.com/raysan5/raylib
 ## I recommend using the package manager **vcpkg** to install Raylib: 
 https://github.com/Microsoft/vcpkg
   
-## Drag the "Sounds" and "Fonts" folder into the Object files folder generated:
-Tetris\x64\Debug 
+## Drag the "Sounds" and "Fonts" folder into the Object files folder generated at:
+### Tetris\x64\Debug 
 
 ### **Scoring system:**
 1 Line: 100 points
@@ -17,11 +17,13 @@ Tetris\x64\Debug
 Manual down-move: 1 point
 
 ### **Controls:**
-- Left/Right/Down Arrow - moves left/right/down
-- Z - left rotation
-- X/Up Arrow - right rotation
-- C - hold 
-- Space - hard drop
+- Left/Right/Down Arrow: moves block left/right/down by one block
+- Z: left rotation
+- X/Up Arrow: right rotation
+- C: holds a block
+- Space: hard drop
+- P: pauses the game
+- Any key: restarts the game when the game is over
 
 ### **Features to add:**
 - T-spin (don't really know how to do a T-spin myself in the game)
