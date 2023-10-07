@@ -9,6 +9,8 @@ https://github.com/Microsoft/vcpkg
 ## Drag the "Sounds" and "Fonts" folder into the Object files folder generated at:
 "Tetris\x64\Debug"
 
+## Game Information ##
+
 ### **Scoring system:**
 1 Line: 100 points
 2 Lines: 300 points
