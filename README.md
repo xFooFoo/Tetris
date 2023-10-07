@@ -7,7 +7,7 @@ https://github.com/raysan5/raylib
 https://github.com/Microsoft/vcpkg
   
 ## Drag the "Sounds" and "Fonts" folder into the Object files folder generated at:
-### Tetris\x64\Debug 
+"Tetris\x64\Debug"
 
 ### **Scoring system:**
 1 Line: 100 points
