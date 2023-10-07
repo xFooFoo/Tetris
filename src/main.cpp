@@ -29,9 +29,11 @@ int main()
         UpdateMusicStream(game.music);
         BeginDrawing();
         //--------------Interval period in seconds is passed to EventTriggered-----------//
-        if (EventTriggered(0.7 - std::min(((double) game.score / 100000.0), 0.25))) {
-            game.MoveBlockDown();
-            //std::cout << 0.3 - std::min(((double) game.score / 100000.0), 0.25) << std::endl;
+        if (!game.isPaused) {
+            if (EventTriggered(0.5 - std::min(((double)game.score / 100000.0), 0.20))) {
+                game.MoveBlockDown();
+                std::cout << 0.5 - std::min(((double)game.score / 100000.0), 0.20) << std::endl;
+            }
         }
         //-------------------KEY PRESS PROCESSES HERE-------------------------------//
         game.HandleInput();
@@ -55,10 +57,12 @@ int main()
             DrawTextEx(font, "GAME", { 320 + 25, 500 }, 38, 2, RED);
             DrawTextEx(font, "OVER", { 320 + 30, 540 }, 38, 2, RED);
         }
+        else if (game.isPaused) {
+            DrawTextEx(font, "PAUSED", { 300 + 25, 510 }, 38, 2, RED);
+        }
         //----------------------------UI END------------------------------------//
         game.Draw();
         EndDrawing();
-
     }
     CloseWindow();
 }

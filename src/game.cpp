@@ -11,6 +11,7 @@ Game::Game() {
 	gameOver = false;
 	held = false;
 	canUseHold = true;
+	isPaused = false;
 	InitAudioDevice();
 	music = LoadMusicStream("Sounds/korobeiniki.mp3");
 	PlayMusicStream(music);
@@ -78,37 +79,48 @@ void Game::Draw() {
 }
 
 // Create hard drop and hold mechanics
+//Maybe use "IsKeyDown" to implement continuous movement if a user holds down a key
 void Game::HandleInput() {
 	int keyPressed = GetKeyPressed();
 
-	if (gameOver && keyPressed) {
-		Reset();
+	if (isPaused) {
+		if (keyPressed == KEY_P) {
+			isPaused = !isPaused;
+		}
 	}
 	else {
-		switch (keyPressed) {
-		case KEY_LEFT:
-			MoveBlockLeft();
-			break;
-		case KEY_RIGHT:
-			MoveBlockRight();
-			break;
-		case KEY_DOWN:
-			MoveBlockDown();
-			UpdateScore(0, 1);
-			break;
-		case KEY_UP:
-		case KEY_X:
-			RotateBlockRight();
-			break;
-		case KEY_Z:
-			RotateBlockLeft();
-			break;
-		case KEY_C:
-			HoldBlock();
-			break;
-		case KEY_SPACE:
-			HardDrop();
-			break;
+		if (gameOver && keyPressed) {
+			Reset();
+		}
+		else {
+			switch (keyPressed) {
+			case KEY_LEFT:
+				MoveBlockLeft();
+				break;
+			case KEY_RIGHT:
+				MoveBlockRight();
+				break;
+			case KEY_DOWN: //Manual Down-move
+				MoveBlockDown();
+				UpdateScore(0, 1);
+				break;
+			case KEY_UP:
+			case KEY_X:
+				RotateBlockRight();
+				break;
+			case KEY_Z:
+				RotateBlockLeft();
+				break;
+			case KEY_C:
+				HoldBlock();
+				break;
+			case KEY_SPACE:
+				HardDrop();
+				break;
+			case KEY_P:
+				isPaused = !isPaused;
+				break;
+			}
 		}
 	}
 }

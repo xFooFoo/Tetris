@@ -14,6 +14,7 @@ public:
 	bool gameOver;
 	bool held; //true if a player has held a new piece without placing down one
 	bool canUseHold; //true is a player has placed a piece while holding another, replenishes their hold use;
+	bool isPaused;
 	void Reset();
 	Music music;
 private:
