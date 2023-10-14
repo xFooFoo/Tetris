@@ -1,5 +1,7 @@
 # **Tetris** game made with **Raylib** on **C++**
 
+# [PLAY NOW](arcade-tetris.netlify.app)
+
 ## **Raylib** installation and building instructions: 
 https://github.com/raysan5/raylib
 
