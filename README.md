@@ -11,6 +11,8 @@ https://github.com/Microsoft/vcpkg
 ## Drag the "Sounds" and "Fonts" folder into the Object files folder generated at:
 "Tetris\x64\Debug"
 
+### Web game folder contains the game compiled by Emscripten to WebAssembly
+
 ## Game Information ##
 
 ### **Scoring system:**
