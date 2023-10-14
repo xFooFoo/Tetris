@@ -28,7 +28,7 @@ Manual down-move: 1 point
 - X/Up Arrow: Right rotation
 - Space: Drop Piece
 - C: Hold Piece
-- P: Pause
+- P: Play/Pause
 - Any key: Restarts on Game over
 
 ### **Features to add:**
