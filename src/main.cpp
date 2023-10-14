@@ -1,8 +1,10 @@
 // Tetris.cpp : This file contains the 'main' function. Program execution begins and ends there
-#include <raylib.h>
-#include "..\include\game.h"
+#include <stdio.h>
 #include <iostream>
 #include <cmath>
+#include <cstdio>
+#include <raylib.h>
+#include "..\include\game.h"
 
 double lastUpdateTime = 0;
 
@@ -32,7 +34,7 @@ int main()
         if (!game.isPaused) {
             if (EventTriggered(0.5 - std::min(((double)game.score / 100000.0), 0.20))) {
                 game.MoveBlockDown();
-                std::cout << 0.5 - std::min(((double)game.score / 100000.0), 0.20) << std::endl;
+                //std::cout << 0.5 - std::min(((double)game.score / 100000.0), 0.20) << std::endl;
             }
         }
         //-------------------KEY PRESS PROCESSES HERE-------------------------------//
@@ -44,7 +46,7 @@ int main()
         DrawRectangleRounded({320, 55, 170, 60}, (float)0.3, 6, lightPurpleBackground);
         //-------------- Score text generation ----------------------//
         char scoreText[10];
-        sprintf_s(scoreText, sizeof(scoreText), "%d", game.score);
+        std::snprintf(scoreText, sizeof(scoreText), "%d", game.score);
         Vector2 textSize = MeasureTextEx(font, scoreText, 38, 2);
         DrawTextEx(font, scoreText, { 320 + (170 - textSize.x) / 2, 66.5}, 38, 2, RAYWHITE);
         //---------------------------------------------------------------//
