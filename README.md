@@ -23,13 +23,13 @@ https://github.com/Microsoft/vcpkg
 Manual down-move: 1 point
 
 ### **Controls:**
-- Left/Right/Down Arrow: moves block left/right/down by one block
-- Z: left rotation
-- X/Up Arrow: right rotation
-- C: holds a block
-- Space: hard drop
-- P: pauses the game
-- Any key: restarts the game when the game is over
+- Left/Right/Down Arrow: Move Piece
+- Z: Left rotation
+- X/Up Arrow: Right rotation
+- Space: Drop Piece
+- C: Hold Piece
+- P: Pause
+- Any key: Restarts on Game over
 
 ### **Features to add:**
 - T-spin (don't really know how to do a T-spin myself in the game)
