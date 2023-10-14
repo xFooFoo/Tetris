@@ -1,0 +1,11 @@
+﻿  block.cpp
+C:\Users\FooFoo\source\repos\Tetris\src\block.cpp(38,32): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  blocks.cpp
+  colours.cpp
+  game.cpp
+  grid.cpp
+C:\Users\FooFoo\source\repos\Tetris\src\grid.cpp(92,24): warning C4553: '==': result of expression not used; did you intend '='?
+  position.cpp
+  main.cpp
+  Generating Code...
+  Tetris.vcxproj -> C:\Users\FooFoo\source\repos\Tetris\x64\Debug\Tetris.exe

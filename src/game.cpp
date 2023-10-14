@@ -11,7 +11,7 @@ Game::Game() {
 	gameOver = false;
 	held = false;
 	canUseHold = true;
-	isPaused = false;
+	isPaused = true;
 	InitAudioDevice();
 	music = LoadMusicStream("Sounds/korobeiniki.mp3");
 	PlayMusicStream(music);
