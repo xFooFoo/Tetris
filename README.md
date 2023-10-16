@@ -36,6 +36,7 @@ Manual down-move: 1 point
 ### **Features to add:**
 - T-spin
 - Global highscore
+- Continuous movement for a piece going left/right/down
 - Volume bar for the music
 - Level System 
 
