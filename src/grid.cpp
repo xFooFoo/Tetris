@@ -89,7 +89,7 @@ bool Grid::IsRowFull(int row)
 void Grid::ClearRow(int row)
 {
     for (int col = 0; col < cellWidth; col++) {
-        grid[row][col] == 0;
+        grid[row][col] = 0;
     }
 }
 

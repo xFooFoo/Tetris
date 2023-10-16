@@ -303,12 +303,13 @@ void Game::Reset() {
 	gameOver = false;
 	held = false;
 	canUseHold = true;
+	isPaused = false;
 	//Reset to starting values
 	grid.Initialize();
 	blocks = GetAllBlocks();
 	currentBlock = GetRandomBlock();
 	nextBlock = GetRandomBlock();
-	heldBlock;
+	heldBlock; 
 	score = 0;
 }
 

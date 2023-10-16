@@ -20,11 +20,10 @@ bool EventTriggered(double interval) {
 int main()
 {
     InitWindow(500, 620, "Tetris");
-    SetTargetFPS(60);
-    
+    //SetTargetFPS(60); //we already have delta time to account for the periodic game.MoveBlockDown()
     Game game = Game();
     Font font = LoadFontEx("Font/BarcadeNoBar.otf", 64, 0, 0);
-
+    char scoreText[10];
     //std::cout << GetWorkingDirectory();
 
     while (!WindowShouldClose()) {
@@ -45,7 +44,6 @@ int main()
         DrawTextEx(font, "Score", { 320 + 20, 15 }, 38, 2, RAYWHITE);
         DrawRectangleRounded({320, 55, 170, 60}, (float)0.3, 6, lightPurpleBackground);
         //-------------- Score text generation ----------------------//
-        char scoreText[10];
         std::snprintf(scoreText, sizeof(scoreText), "%d", game.score);
         Vector2 textSize = MeasureTextEx(font, scoreText, 38, 2);
         DrawTextEx(font, scoreText, { 320 + (170 - textSize.x) / 2, 66.5}, 38, 2, RAYWHITE);
@@ -55,15 +53,24 @@ int main()
         //---------------------------------------------------------------//
         DrawTextEx(font, "Hold", { 320 + 32.5, 315 }, 38, 2, RAYWHITE);
         DrawRectangleRounded({ 310 + 10, 355, 170, 100 }, (float)0.3, 6, lightPurpleBackground);
+        //----------------------------UI END------------------------------------//
+        //Draw Blocks & Grids
+        game.Draw();
+        //---------------------------- SYSTEM MESSAGE ------------------------------------//
+        //Vector2 playTextSize = MeasureTextEx(font, "P TO PLAY", 38, 2);//playTextSize X = 215.5 Y = 38
+        //std::cout << "x: " << playTextSize.x << " y: " << playTextSize.y << std::endl;
         if (game.gameOver) {
             DrawTextEx(font, "GAME", { 320 + 25, 500 }, 38, 2, RED);
             DrawTextEx(font, "OVER", { 320 + 30, 540 }, 38, 2, RED);
+            //playTextSize X = 215.5 Y = 38
+            //DrawRectangleRounded({ (300 - 215.5) / 2, (605 - 38) / 2, 215.5 + 10, 38 + 5}, (float)0.3, 6, lightPurpleBackground);
+            //DrawTextEx(font, "P TO PLAY", { (310 - 215.5) / 2, (610 - 38) / 2 }, 38, 2, RAYWHITE);
         }
         else if (game.isPaused) {
             DrawTextEx(font, "PAUSED", { 300 + 25, 510 }, 38, 2, RED);
+            //DrawRectangleRounded({ (300 - 215.5) / 2, (605 - 38) / 2, 215.5 + 10, 38 + 5 }, (float)0.3, 6, lightPurpleBackground);
+            //DrawTextEx(font, "P TO PLAY", { (310 - 215.5) / 2, (610 - 38) / 2 }, 38, 2, RAYWHITE);
         }
-        //----------------------------UI END------------------------------------//
-        game.Draw();
         EndDrawing();
     }
     CloseWindow();
