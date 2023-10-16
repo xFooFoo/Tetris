@@ -1,6 +1,7 @@
 # **Tetris** game made with **Raylib** on **C++**
 
-# [PLAY NOW](https://arcade-tetris.netlify.app)
+## [PLAY NOW](https://arcade-tetris.netlify.app)
+Web game folder contains the game compiled by Emscripten to WebAssembly
 
 ## **Raylib** installation and building instructions: 
 https://github.com/raysan5/raylib
@@ -8,10 +9,11 @@ https://github.com/raysan5/raylib
 ## I recommend using the package manager **'vcpkg'** to install Raylib: 
 https://github.com/Microsoft/vcpkg
   
-## Drag the "Sounds" and "Fonts" folder into the Object files folder generated at:
+## To Play Locally
+Drag the "Sounds" and "Fonts" folder into the Object files folder generated at: <br>
 "Tetris\x64\Debug"
 
-### Web game folder contains the game compiled by Emscripten to WebAssembly
+
 
 ## Game Information ##
 
