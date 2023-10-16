@@ -7,7 +7,6 @@
 #include "..\include\game.h"
 
 double lastUpdateTime = 0;
-
 bool EventTriggered(double interval) {
     double currentTime = GetTime();
     if (currentTime - lastUpdateTime >= interval) {
@@ -63,13 +62,13 @@ int main()
             DrawTextEx(font, "GAME", { 320 + 25, 500 }, 38, 2, RED);
             DrawTextEx(font, "OVER", { 320 + 30, 540 }, 38, 2, RED);
             //playTextSize X = 215.5 Y = 38
-            //DrawRectangleRounded({ (300 - 215.5) / 2, (605 - 38) / 2, 215.5 + 10, 38 + 5}, (float)0.3, 6, lightPurpleBackground);
-            //DrawTextEx(font, "P TO PLAY", { (310 - 215.5) / 2, (610 - 38) / 2 }, 38, 2, RAYWHITE);
+            DrawRectangleRounded({ (300 - 215.5) / 2, (605 - 38) / 2, 215.5 + 10, 38 + 5}, (float)0.3, 6, lightPurpleBackground);
+            DrawTextEx(font, "P TO PLAY", { (310 - 215.5) / 2, (610 - 38) / 2 }, 38, 2, RAYWHITE);
         }
         else if (game.isPaused) {
             DrawTextEx(font, "PAUSED", { 300 + 25, 510 }, 38, 2, RED);
-            //DrawRectangleRounded({ (300 - 215.5) / 2, (605 - 38) / 2, 215.5 + 10, 38 + 5 }, (float)0.3, 6, lightPurpleBackground);
-            //DrawTextEx(font, "P TO PLAY", { (310 - 215.5) / 2, (610 - 38) / 2 }, 38, 2, RAYWHITE);
+            DrawRectangleRounded({ (300 - 215.5) / 2, (605 - 38) / 2, 215.5 + 10, 38 + 5 }, (float)0.3, 6, lightPurpleBackground);
+            DrawTextEx(font, "P TO PLAY", { (310 - 215.5) / 2, (610 - 38) / 2 }, 38, 2, RAYWHITE);
         }
         EndDrawing();
     }

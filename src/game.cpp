@@ -6,7 +6,6 @@ Game::Game() {
 	blocks = GetAllBlocks();
 	currentBlock = GetRandomBlock();
 	nextBlock = GetRandomBlock();
-	heldBlock;
 	score = 0;
 	gameOver = false;
 	held = false;
@@ -309,7 +308,7 @@ void Game::Reset() {
 	blocks = GetAllBlocks();
 	currentBlock = GetRandomBlock();
 	nextBlock = GetRandomBlock();
-	heldBlock; 
+	//heldBlock; Don't need to reset
 	score = 0;
 }
 
