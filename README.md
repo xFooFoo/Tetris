@@ -34,7 +34,9 @@ Manual down-move: 1 point
 - Any key: Restarts on Game over
 
 ### **Features to add:**
-- T-spin (don't really know how to do a T-spin myself in the game)
+- T-spin
+- Global highscore
+- Volume bar for the music
 - Level System 
 
 ### **Bugs to fix:**
