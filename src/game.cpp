@@ -13,11 +13,16 @@ Game::Game() {
 	isPaused = true;
 	InitAudioDevice();
 	music = LoadMusicStream("Sounds/korobeiniki.mp3");
+	SetMusicVolume(music, 0.2f);
 	PlayMusicStream(music);
 	rotateSound = LoadSound("Sounds/rotate.mp3");
+	SetSoundVolume(rotateSound, 0.2f);
 	clearSound = LoadSound("Sounds/clear.mp3");
+	SetSoundVolume(clearSound, 0.5f);
 	holdSound = LoadSound("Sounds/hold.mp3");
+	SetSoundVolume(holdSound, 0.2f);
 	hardDropSound = LoadSound("Sounds/hardDrop.mp3");
+	SetSoundVolume(hardDropSound, 0.2f);
 }
 
 Game::~Game() {
