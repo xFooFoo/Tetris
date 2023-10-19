@@ -1,7 +1,7 @@
 # **Tetris** game made with **Raylib** on **C++**
 
 ## [PLAY NOW](https://arcade-tetris.netlify.app)
-Web game folder contains the game compiled by Emscripten to WebAssembly
+Web game folder contains the game compiled by Emscripten to WebAssembly, the HTML file is amended to perform some styling.
 
 ## **Raylib** installation and building instructions: 
 https://github.com/raysan5/raylib
@@ -12,8 +12,6 @@ https://github.com/Microsoft/vcpkg
 ## To Play Locally
 Drag the "Sounds" and "Fonts" folder into the Object files folder generated at: <br>
 "Tetris\x64\Debug"
-
-
 
 ## Game Information ##
 
@@ -34,9 +32,7 @@ Manual down-move: 1 point
 - Any key: Restarts on Game over
 
 ### **Features to add:**
-- T-spin
 - Global highscore
-- Continuous movement for a piece going left/right/down
 - Volume bar for the music
 - Level System 
 
