@@ -7,6 +7,8 @@ Game::Game() {
 	currentBlock = GetRandomBlock();
 	nextBlock = GetRandomBlock();
 	score = 0;
+	lastSystemUpdateTime = 0;
+	lastUserUpdateTime = 0;
 	gameOver = false;
 	held = false;
 	canUseHold = true;
@@ -82,6 +84,30 @@ void Game::Draw() {
 	}
 }
 
+bool Game::SystemEventTriggered(double interval) {
+	double currentTime = GetTime();
+	if (currentTime - lastSystemUpdateTime >= interval) {
+		lastSystemUpdateTime = currentTime;
+		return true;
+	}
+	return false;
+}
+
+bool Game::UserInputTriggered(double interval) {
+	double currentTime = GetTime();
+	if (currentTime - lastUserUpdateTime >= interval) {
+		lastUserUpdateTime = currentTime;
+		
+		return true;
+	}
+	return false;
+}
+
+void Game::UpdateSystemTime() {
+	//Resets the interval required for the system to move the block down again, if the user has moved manually!
+	lastSystemUpdateTime = lastUserUpdateTime;
+}
+
 // Create hard drop and hold mechanics
 //Maybe use "IsKeyDown" to implement continuous movement if a user holds down a key
 void Game::HandleInput() {
@@ -93,21 +119,28 @@ void Game::HandleInput() {
 		}
 	}
 	else {
-		if (gameOver && keyPressed) {
-			Reset();
+		if (gameOver) {
+			if (keyPressed) {
+				Reset();
+			}
 		}
 		else {
+			//Keys that CAN be updated by holding key down
+			if (UserInputTriggered(0.1)) {
+				if (IsKeyDown(KEY_DOWN)) {
+					MoveBlockDown();
+					UpdateSystemTime();
+					UpdateScore(0, 1);
+				}
+				if (IsKeyDown(KEY_RIGHT)) {
+					MoveBlockRight();
+				}
+				if (IsKeyDown(KEY_LEFT)) {
+					MoveBlockLeft();
+				}
+			}
+			//Keys that CANNOT be updated by holding key down
 			switch (keyPressed) {
-			case KEY_LEFT:
-				MoveBlockLeft();
-				break;
-			case KEY_RIGHT:
-				MoveBlockRight();
-				break;
-			case KEY_DOWN: //Manual Down-move
-				MoveBlockDown();
-				UpdateScore(0, 1);
-				break;
 			case KEY_UP:
 			case KEY_X:
 				RotateBlockRight();
@@ -115,11 +148,11 @@ void Game::HandleInput() {
 			case KEY_Z:
 				RotateBlockLeft();
 				break;
-			case KEY_C:
-				HoldBlock();
-				break;
 			case KEY_SPACE:
 				HardDrop();
+				break;
+			case KEY_C:
+				HoldBlock();
 				break;
 			case KEY_P:
 				isPaused = !isPaused;

@@ -11,6 +11,9 @@ public:
 	void HandleInput();
 	bool MoveBlockDown(); //Returns true or false on whether the block has been locked in place
 	int score;
+	double lastSystemUpdateTime;
+	double lastUserUpdateTime;
+	bool SystemEventTriggered(double interval);
 	bool gameOver;
 	bool held; //true if a player has held a new piece without placing down one
 	bool canUseHold; //true is a player has placed a piece while holding another, replenishes their hold use;
@@ -35,6 +38,8 @@ private:
 	void LockBlock();
 	void UpdateScore(int rowsCleared, int moveDownPoints);
 	bool BlockFits();
+	bool UserInputTriggered(double interval);
+	void UpdateSystemTime();
 	Sound rotateSound;
 	Sound clearSound;
 	Sound holdSound;

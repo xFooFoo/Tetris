@@ -6,15 +6,8 @@
 #include <raylib.h>
 #include "..\include\game.h"
 
-double lastUpdateTime = 0;
-bool EventTriggered(double interval) {
-    double currentTime = GetTime();
-    if (currentTime - lastUpdateTime >= interval) {
-        lastUpdateTime = currentTime;
-        return true;
-    }
-    return false;
-}
+
+
 
 int main()
 {
@@ -25,12 +18,14 @@ int main()
     char scoreText[10];
     //std::cout << GetWorkingDirectory();
 
+
+
     while (!WindowShouldClose()) {
         UpdateMusicStream(game.music);
         BeginDrawing();
         //--------------Interval period in seconds is passed to EventTriggered-----------//
         if (!game.isPaused) {
-            if (EventTriggered(0.5 - std::min(((double)game.score / 100000.0), 0.20))) {
+            if (game.SystemEventTriggered(0.5 - std::min(((double)game.score / 50000.0), 0.30))) {
                 game.MoveBlockDown();
                 //std::cout << 0.5 - std::min(((double)game.score / 100000.0), 0.20) << std::endl;
             }
@@ -40,6 +35,7 @@ int main()
         //-------------------------------------------------------------------------//
         ClearBackground(purpleBackground);
         //------------------------UI STARTS---------------------------------------//
+        DrawRectangleLinesEx({ 0, 0, 500, 620 }, 2, RAYWHITE);
         DrawTextEx(font, "Score", { 320 + 20, 15 }, 38, 2, RAYWHITE);
         DrawRectangleRounded({320, 55, 170, 60}, (float)0.3, 6, lightPurpleBackground);
         //-------------- Score text generation ----------------------//
