@@ -104,13 +104,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\FooFoo\Libraries\raylib\out\build\x64-Debug\raylib\include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\FooFoo\Libraries\raylib\out\build\x64-Debug\raylib\include;C:\Users\FooFoo\Libraries\emsdk\upstream\emscripten\system\include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>raylib.lib;winmm.lib;$(CoreLibraryDependencies);%(AdditionalDependencies);</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\Users\FooFoo\Libraries\raylib\out\build\x64-Debug\raylib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\FooFoo\Libraries\raylib\out\build\x64-Debug\raylib;C:\Users\FooFoo\Libraries\emsdk\upstream\emscripten;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

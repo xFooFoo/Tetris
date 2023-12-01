@@ -120,7 +120,7 @@ void Game::HandleInput() {
 	}
 	else {
 		if (gameOver) {
-			if (keyPressed) {
+			if (keyPressed && !isAddingHighScore) {
 				Reset();
 			}
 		}
@@ -203,6 +203,7 @@ void Game::LockBlock()
 	nextBlock = GetRandomBlock();
 	if (!BlockFits()) {
 		gameOver = true;
+		isAddingHighScore = true;
 	}
 }
 
@@ -336,6 +337,31 @@ void Game::UpdateScore(int rowsCleared, int moveDownPoints)
 	score += moveDownPoints;
 }
 
+void Game::AddHighScore(std::string name) 
+{
+	// ADD LOGIC TO RETRIEVE USER's NAME
+	// 
+	// Maybe reset the game (thus score) after adding the highscore
+	// Open a text file for writing, appends to it/does not clear
+	std::ofstream outFile("highscore.txt", std::ios::app);
+
+	// Check if the file is successfully opened
+	if (outFile.is_open()) {
+		// Write content to the file
+		outFile << name << " " << score << std::endl;
+
+		// Close the file
+		outFile.close();
+		std::cout << "File written successfully.\n";
+		// Notify the browser about the new file
+	}
+	else {
+		std::cerr << "Error opening the file." << std::endl;
+	}
+	isAddingHighScore = false;
+
+}
+
 void Game::Reset() {
 	gameOver = false;
 	held = false;
@@ -348,6 +374,7 @@ void Game::Reset() {
 	nextBlock = GetRandomBlock();
 	//heldBlock; Don't need to reset
 	score = 0;
+	isAddingHighScore = false;
 }
 
 

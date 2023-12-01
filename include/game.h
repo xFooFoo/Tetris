@@ -1,6 +1,9 @@
 #pragma once
 #include "grid.h"
+#include <string>
 #include <vector>
+#include <iostream>
+#include <fstream>
 #include "..\src\blocks.cpp"
 
 class Game {
@@ -20,6 +23,9 @@ public:
 	bool isPaused;
 	void Reset();
 	Music music;
+	std::string name;
+	void AddHighScore(std::string name);
+	bool isAddingHighScore;
 private:
 	Grid grid;
 	std::vector<Block> blocks; //7 Tetrominos stored here
