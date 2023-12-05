@@ -3,19 +3,19 @@
 ## [PLAY NOW](https://arcade-tetris.netlify.app)
 Web game folder contains the game compiled by Emscripten to WebAssembly, the HTML file is amended to perform some styling.
 
-**Raylib** installation and building instructions: 
+**Raylib** installation and building instructions:** <br/>
 ```https://github.com/raysan5/raylib```
 
-I recommend using the package manager **'vcpkg'** to install Raylib: 
+**I recommend using the package manager **'vcpkg'** to install Raylib:** <br/>
 ```https://github.com/Microsoft/vcpkg```
   
-To Play Locally
+### To Play Locally
 ```
  Drag the "Sounds" and "Fonts" folder into the Object files folder generated at: <br>
 "Tetris\x64\Debug"
 ```
 
-###Game Information 
+### Game Information 
 
 **Scoring system:**
 ```
@@ -45,7 +45,7 @@ Manual down-move: 1 point
 ```
 
 
-### **GAME UI**
+**GAME UI**
 
 ![image](https://github.com/xFooFoo/Tetris/assets/73238233/8c9ca15a-511a-4aa8-94d6-27f22cbac53c)
 
