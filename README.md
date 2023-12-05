@@ -3,7 +3,7 @@
 ### [PLAY NOW](https://arcade-tetris.netlify.app)
 Web game folder contains the game compiled by Emscripten to WebAssembly, the HTML file is amended to perform some styling.
 
-(**Raylib** installation and building instructions](https://github.com/raysan5/raylib) <br/>
+[**Raylib** installation and building instructions](https://github.com/raysan5/raylib) <br/>
 
 
 I recommend using the package manager [**'vcpkg'**](https://github.com/Microsoft/vcpkg) to install Raylib
