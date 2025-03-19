@@ -49,3 +49,10 @@ Manual down-move: 1 point
 
 ![image](https://github.com/xFooFoo/Tetris/assets/73238233/8c9ca15a-511a-4aa8-94d6-27f22cbac53c)
 
+**T-spin performed by LunaBalloona_**
+<video src='https://github.com/user-attachments/assets/2d9a1ac1-5de3-425f-8fd2-cba9338d3e46' width=180/>
+
+
+
+
+
